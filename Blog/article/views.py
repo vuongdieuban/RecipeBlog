@@ -1,6 +1,10 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 from django.db.models import Q
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+
 from .forms import ArticleModelForm
 from .models import Article
 from .mixins import AjaxFormMixin
@@ -36,6 +40,7 @@ class ArticleDetailView(DetailView):
         return get_object_or_404(Article, slug=slug_)
 
 
+@method_decorator(login_required, name='dispatch')
 class ArticleCreateView(CreateView):
     template_name = 'article/article_create.html'
     form_class = ArticleModelForm
