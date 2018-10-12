@@ -1,0 +1,7 @@
+.img-container .img-responsive {
+    position: relative;
+    height: 150px;
+    width: 150px;
+    display: inline-block;
+    margin: 20px 0;
+}

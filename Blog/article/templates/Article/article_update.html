@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="col-6 offset-m3">
+    <h1>Update: {{ object.title }}</h1>
+    <form class="my-ajax-form" method="POST" data-url="{% url 'article:article-update' object.slug %}">  <!--data-url = sending this to new end point-->
+        {% csrf_token %}
+        {{form.as_p}}
+        <input class='btn btn-primary' type='submit' value='Save' />
+    </form>
+</div>
+{% endblock content %}
+
+<!-- 
+{% block javascript %}
+<script>
+    $(document).ready(function(){
+        var $myForm = $(".my-ajax-form")
+        $myForm.submit(function(event){
+            event.preventDefault()      //prevent form to submit a normal way (synchronus way)
+            var $formData = $(this).serialize()
+            var $endpoint = $myForm.attr("data-url") || window.location.href
+            console.log($formData)
+            console.log($endpoint)
+            $.ajax({
+                method:"POST",
+                url: $endpoint,
+                data: $formData,
+                success: handleFormSuccess,
+                error: handleFormError,
+            })
+
+            function handleFormSuccess(data, textStatus, jqXHR){
+                console.log(data)
+                console.log(textStatus)
+                console.log(jqXHR)
+                $myForm[0].reset();    //reset form data
+            }
+
+            function handleFormError(jqXHR, textStatus, errorThrown){
+                console.log(jqXHR)
+                console.log(textStatus)
+                console.log(errorThrown)
+            }
+        })
+    })
+</script>
+{% endblock javascript %} -->

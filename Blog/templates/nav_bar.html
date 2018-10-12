@@ -1,0 +1,12 @@
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static '/css/nav_bar.css' %}" />
+
+
+
+<nav class="icon-bar">
+    <a href="../">
+        ::before "Home" ::after
+    </a>
+    <a href="{% url 'article:article-list' %}">List</i></a>
+    <a href="{% url 'article:article-create' %}">Create</i></a>
+</nav>

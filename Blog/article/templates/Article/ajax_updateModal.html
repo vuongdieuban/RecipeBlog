@@ -1,0 +1,37 @@
+<!-- Button to Open the Modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+    Update
+</button>
+
+<!-- The Modal -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Modal Heading</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="col-6 offset-m3">
+                    <h3>Update: {{ instance.title }}</h1>
+                        <form class="my-ajax-form" method="POST" data-url="{% url 'article:article-update' instance.slug  %}">
+                            <!--data-url = sending this to new end point-->
+                            {% csrf_token %}
+                            <input type="text" class="my-ajax-form" name="title" placeholder="Title">
+                            <input type="text" class="my-ajax-form" name="description" placeholder="Description">
+                            <input class='btn btn-primary' type='submit' value='Save' />
+                        </form>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <a class="btn btn-danger" href="{% url 'article:article-list' %}" role="button">Close</a>
+            </div>
+        </div>
+    </div>
+</div>
