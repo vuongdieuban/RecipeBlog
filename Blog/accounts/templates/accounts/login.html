@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>This is a {{title}} page</h1>
+    <form method='POST'>{%csrf_token%}
+        {{ form.as_p }} <!--this comes from the imported login view of Django-->
+        <input type='submit' value = '{{title}}'/>
+        <p>Not register yet?<a href = '{{ form.get_register_url }}'>Register!</a></p>
+    </form>
+
+{% endblock content %}
+
+
+{% block another_block %}
+
+{% endblock another_block %}
