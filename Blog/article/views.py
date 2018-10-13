@@ -4,6 +4,7 @@ from django.db.models import Q
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.http import Http404
 
 from .forms import ArticleModelForm
 from .models import Article
@@ -27,7 +28,9 @@ class ArticleListView(ListView):
         if query:
             queryset = queryset.filter(
                 Q(title__icontains=query) |
-                Q(description__icontains=query)
+                Q(description__icontains=query) |
+                Q(author__first_name__icontains=query) |
+                Q(author__last_name__icontains=query)
             ).distinct()
         return queryset
 
@@ -48,6 +51,8 @@ class ArticleCreateView(CreateView):
     success_url = reverse_lazy('article:article-list')
 
     def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.author = self.request.user  # obj.author from author field in the Model
         return super().form_valid(form)
 
 
@@ -65,9 +70,13 @@ class ArticleUpdateView(AjaxFormMixin, UpdateView):
 class ArticleDeleteView(DeleteView):
     template_name = 'article/article_delete.html'
 
-    def get_object(self):
+    def get_object(self, queryset=None):
         slug_ = self.kwargs.get("slug")
-        return get_object_or_404(Article, slug=slug_)
+        obj = get_object_or_404(Article, slug=slug_)
+        # check to see if the user owns the delete item
+        if not obj.author == self.request.user:
+            raise Http404
+        return obj
 
     def get_success_url(self):
         return reverse('article:article-list')

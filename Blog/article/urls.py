@@ -6,7 +6,7 @@ from .views import (
     ArticleUpdateView,
     ArticleDeleteView,
     test_view
-                    )
+)
 
 app_name = 'article'
 

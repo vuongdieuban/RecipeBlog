@@ -10,6 +10,7 @@ class ArticleModelForm(forms.ModelForm):
         model = Article
         fields = [
             'title',
+            'ingredient',
             'description',
             'image',
         ]

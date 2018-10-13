@@ -23,7 +23,7 @@
       {% endif %}
       <a href='{{ instance.get_absolute_detail_url }}'> {{ instance.title }}</a>
       <br><small>Created on: {{ instance.created }}</small><br />
-      {% include 'Article/ajax_updateModal.html' %}
+      <small>Author: {{instance.author.get_full_name}}</small>
       {% endfor %}
     </div>
   </div>

@@ -1,14 +1,15 @@
 from django.db import models
-
-# Create your models here.
-from django.db import models
 from django.urls import reverse
 from django.utils import timezone
 from django.db.models.signals import pre_save
+from django.conf import settings
 from Blog.utils import unique_slug_generator
 
 
 class Article(models.Model):
+    author = models.ForeignKey(settings.AUTH_USER_MODEL,
+                               on_delete=models.CASCADE,)
+
     title = models.CharField(max_length=120)
     created = models.DateTimeField(default=timezone.now)
     description = models.TextField(null=False)
@@ -20,6 +21,7 @@ class Article(models.Model):
         width_field="width_field", height_field="height_field")
     height_field = models.IntegerField(default=0)
     width_field = models.IntegerField(default=0)
+
     slug = models.SlugField(max_length=50, unique=True)
 
     def __str__(self):

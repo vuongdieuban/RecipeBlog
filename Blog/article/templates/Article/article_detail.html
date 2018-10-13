@@ -9,8 +9,9 @@
     <div class="row">
         <div class="col-sm-6">
             <h3>{{ object.title }}</h3>
-            <small>Created:{{ object.created }}</small>
+            <small>Created: {{ object.created }}</small>
             <p></p>
+            <small>Author: {{object.author.get_full_name}}</small>
             {% if object.image %}
             <div class="img-container">
                 <img src='{{ object.image.url }}' class="img-responsive" />
