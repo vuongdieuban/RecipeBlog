@@ -29,6 +29,7 @@ class ArticleListView(ListView):
             queryset = queryset.filter(
                 Q(title__icontains=query) |
                 Q(description__icontains=query) |
+                Q(ingredient__icontains=query) |
                 Q(author__first_name__icontains=query) |
                 Q(author__last_name__icontains=query)
             ).distinct()
