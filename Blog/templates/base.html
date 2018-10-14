@@ -21,6 +21,13 @@
         <h1 class="display-3">Mom's Recipes </h1>
         <!-- {% include 'nav_bar.html' %} -->
     </div>
+    Hello {{request.user.get_full_name}}
+    <div class="login">
+        <br><small><a href="{% url 'accounts:login' %}">Login</a></small><br />
+        <br><small><a href="{% url 'accounts:logout' %}">Logout</a></small><br />
+        <br><small><a href="{% url 'accounts:register' %}">Register</a></small><br />
+        <br><small><a href="{% url 'article:article-create' %}">Create Recipes</a></small><br />
+    </div>
 
     {% block content %}
     replace me
