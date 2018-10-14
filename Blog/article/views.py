@@ -4,7 +4,7 @@ from django.db.models import Q
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect, HttpResponse
 
 from .forms import ArticleModelForm
 from .models import Article
@@ -83,7 +83,10 @@ class ArticleDeleteView(DeleteView):
         return reverse('article:article-list')
 
 
-def test_view(request):
-    template_name = 'article/article_test.html'
-    context = {}
-    return render(request, template_name, context)
+# def not_auth_view(request, slug):
+#     template_name = 'article/not_auth_delete.html'
+#     obj = get_object_or_404(Article, slug=slug)
+#     context = {
+#         'object': obj
+#     }
+#     return render(request, template_name, context)

@@ -1,12 +1,21 @@
-{% load staticfiles %}
-<link rel="stylesheet" href="{% static '/css/nav_bar.css' %}" />
+<!-- Grey with black text -->
+<nav class="navbar navbar-expand-sm bg-light navbar-light">
+    <ul class="navbar-nav">
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'article:article-list' %}">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'article:article-create' %}">Create Recipe</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'accounts:login' %}">Login</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'accounts:register' %}">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a>
+        </li>
 
-
-
-<nav class="icon-bar">
-    <a href="../">
-        ::before "Home" ::after
-    </a>
-    <a href="{% url 'article:article-list' %}">List</i></a>
-    <a href="{% url 'article:article-create' %}">Create</i></a>
+    </ul>
 </nav>

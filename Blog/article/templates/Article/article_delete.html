@@ -2,9 +2,9 @@
 
 {% block content %}
 <div class="col-6 offset-m3">
-    <form method= 'POST'>{% csrf_token %}
+    <form method='POST'>{% csrf_token %}
         <h1>Do you want to delete the post "{{ object.title }}"?</h1>
-        <p><input type='submit' value='Yes' />  <a href="{% url 'article:article-list' %}">Cancel</a></p>
+        <p><input type='submit' value='Yes' /> <a href="{% url 'article:article-list' %}">Cancel</a></p>
 
     </form>
 </div>
