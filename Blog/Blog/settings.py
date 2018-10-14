@@ -135,3 +135,9 @@ MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media_cdn')
 
 
 LOGIN_URL = '/login/'
+
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
