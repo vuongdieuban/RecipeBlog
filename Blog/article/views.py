@@ -65,7 +65,11 @@ class ArticleUpdateView(AjaxFormMixin, UpdateView):
 
     def get_object(self, queryset=None):
         slug_ = self.kwargs.get("slug")
-        return get_object_or_404(Article, slug=slug_)
+        obj = get_object_or_404(Article, slug=slug_)
+        # check to see if the user owns the update item
+        if not obj.author == self.request.user:
+            raise Http404
+        return obj
 
 
 class ArticleDeleteView(DeleteView):
