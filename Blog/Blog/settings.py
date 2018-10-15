@@ -85,6 +85,18 @@ DATABASES = {
 }
 
 
+# # Remote server, Postgres database, registered on elephantSQL
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'rmtkwlpo',
+#         'USER': 'rmtkwlpo',
+#         'PASSWORD': 'Trrl3bDAH1-hJgW3cyAJFx9baoh-07te',
+#         'HOST': 'pellefant.db.elephantsql.com',
+#         'PORT': '5432',
+#     }
+# }
+
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 

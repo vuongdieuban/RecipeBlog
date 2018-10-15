@@ -19,7 +19,7 @@ from django.views.generic import (
 
 
 class ArticleListView(ListView):
-    template_name = 'article/article_list.html'
+    template_name = 'Article/article_list.html'
 
     def get_queryset(self):
         queryset = Article.objects.all()
@@ -37,7 +37,7 @@ class ArticleListView(ListView):
 
 
 class ArticleDetailView(DetailView):
-    template_name = 'article/article_detail.html'
+    template_name = 'Article/article_detail.html'
 
     def get_object(self, queryset=None):
         slug_ = self.kwargs.get("slug")
@@ -46,7 +46,7 @@ class ArticleDetailView(DetailView):
 
 @method_decorator(login_required, name='dispatch')
 class ArticleCreateView(CreateView):
-    template_name = 'article/article_create.html'
+    template_name = 'Article/article_create.html'
     form_class = ArticleModelForm
     queryset = Article.objects.all()
     success_url = reverse_lazy('article:article-list')
@@ -58,7 +58,7 @@ class ArticleCreateView(CreateView):
 
 
 class ArticleUpdateView(AjaxFormMixin, UpdateView):
-    template_name = 'article/article_update.html'
+    template_name = 'Article/article_update.html'
     form_class = ArticleModelForm
     queryset = Article.objects.all()
     success_url = reverse_lazy('article:article-list')
@@ -69,7 +69,7 @@ class ArticleUpdateView(AjaxFormMixin, UpdateView):
 
 
 class ArticleDeleteView(DeleteView):
-    template_name = 'article/article_delete.html'
+    template_name = 'Article/article_delete.html'
 
     def get_object(self, queryset=None):
         slug_ = self.kwargs.get("slug")
