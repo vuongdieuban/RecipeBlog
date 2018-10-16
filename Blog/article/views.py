@@ -4,7 +4,7 @@ from django.db.models import Q
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from django.http import Http404, HttpResponseRedirect, HttpResponse
+from django.http import Http404, HttpResponseRedirect, HttpResponse, HttpResponseForbidden
 
 from .forms import ArticleModelForm
 from .models import Article
@@ -61,7 +61,10 @@ class ArticleUpdateView(AjaxFormMixin, UpdateView):
     template_name = 'Article/article_update.html'
     form_class = ArticleModelForm
     queryset = Article.objects.all()
-    success_url = reverse_lazy('article:article-list')
+    model = Article
+
+    def get_success_url(self):
+        return reverse('article:article-list')
 
     def get_object(self, queryset=None):
         slug_ = self.kwargs.get("slug")
@@ -71,26 +74,30 @@ class ArticleUpdateView(AjaxFormMixin, UpdateView):
             raise Http404
         return obj
 
+    # def post(self, request, *args, **kwargs):
+    #         # the Post object
+    #     self.object = self.get_object()
+    #     if self.object.author == request.user:
+    #         success_url = self.get_success_url()
+    #         self.object.save()
+    #         return HttpResponseRedirect(success_url)
+    #     else:
+    #         return HttpResponseForbidden("You are not author of this post. Cannot update other's posts")
+
 
 class ArticleDeleteView(DeleteView):
     template_name = 'Article/article_delete.html'
-
-    def get_object(self, queryset=None):
-        slug_ = self.kwargs.get("slug")
-        obj = get_object_or_404(Article, slug=slug_)
-        # check to see if the user owns the delete item
-        if not obj.author == self.request.user:
-            raise Http404
-        return obj
+    model = Article
 
     def get_success_url(self):
         return reverse('article:article-list')
 
-
-# def not_auth_view(request, slug):
-#     template_name = 'article/not_auth_delete.html'
-#     obj = get_object_or_404(Article, slug=slug)
-#     context = {
-#         'object': obj
-#     }
-#     return render(request, template_name, context)
+    def delete(self, request, *args, **kwargs):
+        # the Post object
+        self.object = self.get_object()
+        if self.object.author == request.user:
+            success_url = self.get_success_url()
+            self.object.delete()
+            return HttpResponseRedirect(success_url)
+        else:
+            return HttpResponseForbidden("You are not author of this post. Cannot delete other's posts")

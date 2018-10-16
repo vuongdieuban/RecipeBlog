@@ -5,7 +5,6 @@ from .views import (
     ArticleCreateView,
     ArticleUpdateView,
     ArticleDeleteView,
-    # not_auth_view
 )
 
 app_name = 'article'
@@ -16,6 +15,4 @@ urlpatterns = [
     path('<slug>/', ArticleDetailView.as_view(), name='article-detail'),
     path('<slug>/update/', ArticleUpdateView.as_view(), name='article-update'),
     path('<slug>/delete/', ArticleDeleteView.as_view(), name='article-delete'),
-    # path('<slug>/notauth/', not_auth_view, name='not-auth'),
-
 ]

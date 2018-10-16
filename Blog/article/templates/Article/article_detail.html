@@ -32,13 +32,19 @@
     <div class="row">
         <div class="col"></div>
         <div class="col">
-            <!-- Facebook Comment/Share Plugin -->
+            <!-- Facebook Share Plugin -->
             <div class="fb-share-button" data-href="{{ request.build_absolute_uri }}" data-layout="button_count"
                 data-size="small" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
                     class="fb-xfbml-parse-ignore">Share</a>
             </div>
+
+            <!-- Check to see if user is owner before showing delete or update -->
+            {% if object.author == request.user %}
             <br><small><a href="{% url 'article:article-delete' object.slug %}">Delete Recipe</a></small>
             <small><a href="{% url 'article:article-update' object.slug %}">Update Recipe</a></small><br />
+            {% endif %}
+
+            <!-- Facebook Comments Plugin -->
             <div class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-numposts="5"></div>
         </div>
     </div>
