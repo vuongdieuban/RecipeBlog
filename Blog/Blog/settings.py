@@ -136,7 +136,7 @@ USE_TZ = False  # set to True to use UTC, False will use current local time
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 STATICFILES_DIR = [
-    os.path.join(BASE_DIR, 'Blog/static')
+    os.path.join(BASE_DIR, 'static')
 ]
 
 # client upload to RecipeBlog/Blog/media
