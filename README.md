@@ -1,7 +1,7 @@
 # RecipeBlog
 A fully functional Recipe Sharing Blog built using Python and Django MVC framework
 
-Implemented functionalities: 
+Implemented functionalities:  
 •	Create – Read – Delete – Update (CRUD)  
 •	User registration/login/logout  
 •	User authorization, only logged in user can Create, Update, Delete their own recipe  
