@@ -43,7 +43,6 @@ class ArticleDetailView(DetailView):
         slug_ = self.kwargs.get("slug")
         return get_object_or_404(Article, slug=slug_)
 
-
 @method_decorator(login_required, name='dispatch')
 class ArticleCreateView(CreateView):
     template_name = 'Article/article_create.html'

@@ -7,15 +7,17 @@
         <li class="nav-item">
             <a class="nav-link" href="{% url 'article:article-create' %}">Create Recipe</a>
         </li>
+        {% if request.user.is_authenticated %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a>
+        </li>
+        {% else %}
         <li class="nav-item">
             <a class="nav-link" href="{% url 'accounts:login' %}">Login</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{% url 'accounts:register' %}">Register</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a>
-        </li>
-
+        {% endif %}
     </ul>
 </nav>
