@@ -3,32 +3,29 @@
 
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'article/css/article_list.css' %}" />
+<link rel="stylesheet" href="{% static 'article/css/article.css' %}" />
 
 <div class="container">
   <div class="row">
-    <div class="col">
-      <h1>Recipes</h1>
-
-      <form method="GET" action="">
-        <input type="text" name="q" placeholder="Search recipes" />
-        <input type="submit" value="Search" />
-      </form>
-
-      {% for instance in object_list %}
+    {% for instance in object_list %}
+    <div class="col-md-4">
       {% if instance.image %}
-      <div class="img-container">
-        <img src='{{ instance.image.url }}' class='img-responsive'>
+      <div class="recipes__box">
+        <img class='recipes__box-img' src='{{ instance.image.url }}'>
+        {% endif %}
+        <div class='recipes__text'>
+          <h5 class='recipes__title'>{{ instance.title }}</h5>
+          <p class='recipes__subtitle'>
+            Author: <span>{{instance.author.get_full_name}}</span> <br />
+            Created on: <span>{{instance.created}}</span>
+          </p>
+        </div>
+        <button class='recipes__buttons'>
+          <a href='{{ instance.get_absolute_detail_url }}'>View</a>
+        </button>
       </div>
-      {% endif %}
-      <a href='{{ instance.get_absolute_detail_url }}'> {{ instance.title }}</a>
-      <br><small>Created on: {{ instance.created }}</small><br />
-      <small>Author: {{instance.author.get_full_name}}</small>
-      {% endfor %}
     </div>
+    {% endfor %}
   </div>
-</div>
-
-
 </div>
 {% endblock content %}

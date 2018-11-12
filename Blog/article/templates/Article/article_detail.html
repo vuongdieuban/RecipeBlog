@@ -2,54 +2,30 @@
 {% load staticfiles %}
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'article/css/article_detail.css' %}" />
+<link rel="stylesheet" href="{% static 'article/css/article.css' %}" />
 
 <div class="container">
-
-    <div class="row">
-        <div class="col-sm-6">
+    <div class='row justify-content-center'>
+        <div>
             <h3>{{ object.title }}</h3>
             <small>Created: {{ object.created }}</small>
             <p></p>
             <small>Author: {{object.author.get_full_name}}</small>
             {% if object.image %}
-            <div class="img-container">
-                <img src='{{ object.image.url }}' class="img-responsive" />
+            <div class="img-detail-container">
+                <img src='{{ object.image.url }}' class="img-detail-responsive" />
             </div>
             {% endif %}
         </div>
-
-        <div class="col">
-            <p>{{ object.ingredient |linebreaks }}</p>
-        </div>
-
-
-        <div class="col">
-            <p>{{ object.description|linebreaks }}</p>
-        </div>
     </div>
-
-    <div class="row">
-        <div class="col"></div>
-        <div class="col">
-            <!-- Facebook Share Plugin -->
-            <div class="fb-share-button" data-href="{{ request.build_absolute_uri }}" data-layout="button_count"
-                data-size="small" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
-                    class="fb-xfbml-parse-ignore">Share</a>
-            </div>
-
-            <!-- Check to see if user is owner before showing delete or update -->
-            {% if object.author == request.user %}
-            <br><small><a href="{% url 'article:article-delete' object.slug %}">Delete Recipe</a></small>
-            <small><a href="{% url 'article:article-update' object.slug %}">Update Recipe</a></small><br />
-            {% endif %}
-
-            <!-- Facebook Comments Plugin -->
-            <div class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-numposts="5"></div>
-        </div>
+    <div class='row'>
+        ingredients and methods
     </div>
-
 </div>
+
+<!-- -------------------------------------------------------------------------------- -->
+
+
 
 
 

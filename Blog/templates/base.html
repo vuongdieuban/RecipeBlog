@@ -10,17 +10,13 @@
         crossorigin="anonymous">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'base/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'article/css/article.css' %}">
 
 
 </head>
 
 <body>
 
-    <div class=jumbotron jumbotron-fluid>
-        <h1 class="display-3">Mom's Recipes </h1>
-    </div>
-    <h2>Hello {{request.user.get_full_name}}</h2>
     {% include 'nav_bar.html' %}
 
     {% block content %}
