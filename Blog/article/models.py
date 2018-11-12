@@ -5,6 +5,7 @@ from django.db.models.signals import pre_save
 from django.conf import settings
 from Blog.utils import unique_slug_generator
 
+from rest_framework.reverse import reverse as api_reverse
 
 class Article(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL,
@@ -29,6 +30,15 @@ class Article(models.Model):
 
     def get_absolute_detail_url(self):
         return reverse("article:article-detail", kwargs={"slug": self.slug})
+
+    # defines a 'owner' property for ./api/permissions.py
+    @property
+    def owner(self):
+        return self.author
+
+    def get_api_url(self, request=None):
+        return api_reverse('article-api:article-rud', kwargs={'slug': self.slug}, request=request)
+
 
 
 # pre save slug receiver
