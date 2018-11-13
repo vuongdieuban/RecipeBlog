@@ -6,21 +6,50 @@
 
 <div class="container">
     <div class='row justify-content-center'>
-        <div>
-            <h3>{{ object.title }}</h3>
-            <small>Created: {{ object.created }}</small>
-            <p></p>
-            <small>Author: {{object.author.get_full_name}}</small>
-            {% if object.image %}
-            <div class="img-detail-container">
-                <img src='{{ object.image.url }}' class="img-detail-responsive" />
+        <div class='col-lg-6'>
+            <div class='active-recipe' style="margin-top: 60px">
+                <div class="active-recipe__img">
+                    {% if object.image %}
+                    <img src='{{ object.image.url }}' />
+                    {% endif %}
+                    <h3 class='active-recipe__title'>{{ object.title }}</h3>
+                    <h5 class='active-recipe__publisher'>
+                        Created: <span>{{ object.created }}</span> <br />
+                        Author: <span>{{object.author.get_full_name}}</span>
+                    </h5>
+                </div>
             </div>
-            {% endif %}
         </div>
     </div>
     <div class='row'>
-        ingredients and methods
+        <div class='col-lg-6' style="text-align: center">
+            <h4>Ingredients</h4>
+            <p>{{ object.ingredient |linebreaks }}</p>
+        </div>
+        <div class='col-lg-6' style="text-align: center">
+            <h4>Methods</h4>
+            <p>{{ object.description|linebreaks }}</p>
+        </div>
     </div>
+    <div class="row">
+        <div class="col-lg-6 offset-md-3">
+            <!-- Facebook Share Plugin -->
+            <div class="fb-share-button" data-href="{{ request.build_absolute_uri }}" data-layout="button_count"
+                data-size="small" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
+                    class="fb-xfbml-parse-ignore">Share</a>
+            </div>
+
+            <!-- Check to see if user is owner before showing delete or update -->
+            {% if object.author == request.user %}
+            <br><small><a href="{% url 'article:article-delete' object.slug %}">Delete Recipe</a></small>
+            <small><a href="{% url 'article:article-update' object.slug %}">Update Recipe</a></small><br />
+            {% endif %}
+
+            <!-- Facebook Comments Plugin -->
+            <div class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-numposts="5"></div>
+        </div>
+    </div>
+
 </div>
 
 <!-- -------------------------------------------------------------------------------- -->

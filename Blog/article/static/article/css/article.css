@@ -85,30 +85,12 @@ button:focus {
 input[type="text"] { 
     outline: none;
 }
-  
-input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 30px #f3f3f3 inset;
-    -webkit-text-fill-color: #2c3e50 !important;
-}
-
-
 /* Detail View */
-.img-detail-container .img-detail-responsive {
-    position: relative;
-    top: 20px;
-    height: 350px;
-    width: 350px;
-}
-
-
 .active-recipe {
-    margin: 0 auto;
+    margin: 50px auto;
     width: 60%;
 }
 
-.active-recipe__img {
-    height: 500px !important;
-}
 
 .active-recipe__title {
     text-transform: uppercase;
@@ -127,23 +109,4 @@ input:-webkit-autofill {
     font-weight: 300;
     letter-spacing: 2px;
     margin-left: 5px;
-}
-
-.active-recipe__website span {
-    text-transform: lowercase;
-    font-weight: 300;
-    letter-spacing: 2px;
-    color: #e74c3c;
-    margin-left: 10px;
-}
-
-.active-recipe__button {
-    border: solid 2px #e74c3c;
-    background: transparent;
-    padding: 0.2rem 0.9rem;
-    margin: 0 0.2rem;
-    border-radius: 1px;
-    font-size: 1rem;
-    text-transform: uppercase;
-    font-weight: 500;
 }
