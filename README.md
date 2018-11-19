@@ -9,7 +9,6 @@ Implemented functionalities:
 •	Search bar: Query author, recipe’s name, ingredients, recipe’s instructions from database and display via views  
 •	Share and Comment on recipes using Facebook’s share and comments API  
 •	Hosted on Digital Ocean’s Ubuntu server with Postgresql database, Google Nginx serves static files (html,css)  
-•	Visit this project on http://178.128.235.57 and http://178.128.235.57/api/     
-•	Detail of recipe http://178.128.235.57/api/recipe-name  
-•	Search http://178.128.235.57/api/?q=look-up/  
+•	Visit this project on http://recipe.banvuong.com and http://recipe.banvuong.com/api/      
+•	Search http://recipe.banvuong.com/api/?q=look-up/  
 
