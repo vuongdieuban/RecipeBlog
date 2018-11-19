@@ -3,7 +3,7 @@ A fully functional Recipe Sharing Blog built using Python and Django MVC framewo
 
 Implemented functionalities:  
 •	Create – Read – Delete – Update (CRUD)  
-•	API in form of JSON for CRUD  
+•	Provide API, currently only for GET request  
 •	User registration/login/logout  
 •	User authorization, only logged in user can Create, Update, Delete their own recipe  
 •	Search bar: Query author, recipe’s name, ingredients, recipe’s instructions from database and display via views  
